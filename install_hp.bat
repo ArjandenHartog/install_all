@@ -1,4 +1,4 @@
-@echo off
+@echo on
 REM Stel het doelpad in waar het installatieprogramma zich bevindt
 set TARGET_DIR="C:\path\to\directory"
 
