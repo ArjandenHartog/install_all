@@ -1,3 +1,6 @@
+::version 1.1
+:: Author: Arjan den Hartog 
+
 @echo off
 setlocal
 
@@ -46,9 +49,6 @@ start "" /B "%TARGET_DIR%\1. Pre-installatie\ChromeSetup.exe" /silent /install |
 :: Apply Registry Keys
 echo Applying registry keys...
 start "" /B regedit /s "%TARGET_DIR%\1. Pre-installatie\RegistryKeys.reg" || echo Failed to apply registry keys.
-
-:: Adjust power management settings
-echo Adjusting power management settings...
 
 :: Verwijder Nederlands toetsenbord via PowerShell
 powershell -Command "& { $Lang = Get-WinUserLanguageList; $Lang[0].InputMethods.Remove('0409:00000409'); Set-WinUserLanguageList $Lang -Force }"
