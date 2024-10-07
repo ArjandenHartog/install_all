@@ -1,4 +1,4 @@
-::version 1.1
+::version 1.2
 :: Author: Arjan den Hartog 
 
 @echo off
@@ -25,11 +25,11 @@ set TARGET_DIR=%USB_DRIVE%
 
 :: Install Adobe Acrobat
 echo Installing Adobe Acrobat...
-start "" /B "%TARGET_DIR%\1. Pre-installatie\AcroRdrDC1900820071_nl_NL.exe" /sAll /v"/qn" || echo Failed to install Adobe Acrobat.
+start "" /B "%TARGET_DIR%\1. Pre-installatie\Reader_Install_Setup.exe" /sAll /v"/qn" || echo Failed to install Adobe Acrobat.
 
 :: Install Bever Support
 echo Installing Bever Support...
-start "" /B "%TARGET_DIR%\1. Pre-installatie\Bever Support.exe" /s /v"/qn" || echo Failed to install Bever Support.
+start "" /B "%TARGET_DIR%\1. Pre-installatie\Bever_Support.exe" /s /v"/qn" || echo Failed to install Bever Support.
 
 :: Apply Themes
 echo Applying theme 1...
@@ -55,15 +55,18 @@ powershell -Command "& { $Lang = Get-WinUserLanguageList; $Lang[0].InputMethods.
 
 
 :: Never turn off the display and never go to sleep
-powercfg -change -monitor-timeout-ac 0
-powercfg -change -monitor-timeout-dc 0
-powercfg -change -standby-timeout-ac 0
-powercfg -change -standby-timeout-dc 0
-echo Power management settings adjusted.
+powercfg /change monitor-timeout-ac 0
+powercfg /change monitor-timeout-dc 0
+powercfg /change disk-timeout-ac 0
+powercfg /change disk-timeout-dc 0
+powercfg /change standby-timeout-ac 0
+powercfg /change standby-timeout-dc 0
+powercfg /change hibernate-timeout-ac 0
+powercfg /change hibernate-timeout-dc 0
 
 :: Kopieer Bever Support naar het bureaublad
 echo Kopiëren van Bever Support naar het bureaublad...
-copy "D:\1. Pre-installatie\Bever Support.exe" "%userprofile%\Desktop\Bever Support.exe"
+copy "D:\1. Pre-installatie\Bever_Support.exe" "%userprofile%\Desktop\Bever_Support.exe"
 echo Bever Support gekopieerd naar het bureaublad.
 
 echo Installation completed!
